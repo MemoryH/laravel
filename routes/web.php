@@ -55,7 +55,7 @@ Route::prefix(env('DOMAIN_PREFIX'))->group(function () {
 		}
 		
     })->where(['controller'=>'[a-zA-Z0-9\_]+']);
-	Route::get('Test/index','TestController@index');
+//	Route::get('Test/index','TestController@index');
 	//标准写法 (/{domain}/{controller}/{method})
     Route::any('{controller}/{method}', function (Request $request, $controller, $method) {
 		

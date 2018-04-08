@@ -4,16 +4,16 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-/* µÇÂ¼ÑéÖ¤ */
+/* ï¿½ï¿½Â¼ï¿½ï¿½Ö¤ */
 class LoginRequest extends Request {
 
-	//ÊÚÈ¨
+	//ï¿½ï¿½È¨
 	public function authorize()
 	{
 		return true;
 	}
 
-	//¹æÔò
+	//ï¿½ï¿½ï¿½ï¿½
 	public function rules()
 	{
 		return [];

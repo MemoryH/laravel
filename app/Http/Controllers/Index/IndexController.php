@@ -19,8 +19,7 @@ class IndexController extends BaseController
         return view($this->domain.'/'.$this->controller.'/'.$this->method);
     }
 
-    protected function menu(){
-        return view($this->domain.'/'.$this->controller.'/'.$this->method);
-//        echo 111;
-    }
+
+
+
 }
