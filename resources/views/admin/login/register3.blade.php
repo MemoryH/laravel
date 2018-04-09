@@ -35,16 +35,16 @@
                 <h3 class="text-center"><img class="logo-img" src="/static/images/logo.png" alt="logo"/>易证后台管理系统</h3>
             </div>
             <div>
-                <form style="margin-bottom: 0px ;" method="post" class="form-horizontal" action="" parsley-validate novalidate>
+                <form style="margin-bottom: 0px ;" method="post" class="form-horizontal" action="{{url('admin/login/register3')}}" parsley-validate novalidate>
                     {{ csrf_field() }}
                     <div class="content">
-                        <h5 class="title text-center"><strong>申请人信息</strong></h5>
+                        <h5 class="title text-center"><strong>银行信息</strong></h5>
                         <hr/>
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input type="text" name="name" parsley-trigger="change" parsley-error-container="#nick-error" required placeholder="姓名" class="form-control">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></span>
+                                    <input type="text" name="username" parsley-trigger="change" parsley-error-container="#nick-error" required placeholder="银行开户名" class="form-control">
                                 </div>
                                 <div id="nick-error"></div>
                             </div>
@@ -52,8 +52,8 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
-                                    <input type="number" name="telephone" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="手机号码" class="form-control">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></span>
+                                    <input type="number" name="bank_account" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="银行账号" class="form-control">
                                 </div>
                                 <div id="email-error"></div>
                             </div>
@@ -61,16 +61,26 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-thumbs-up"></i></span>
-                                    <input type="number" name="position" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="职位" class="form-control">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></span>
+                                    <input type="number" name="bank_nam" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="开户银行名称" class="form-control">
                                 </div>
                                 <div id="email-error"></div>
                             </div>
-                        </div><div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-hdd"></i></span>
-                                    <input type="number" name="identity_id" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="身份证号码" class="form-control">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></span>
+                                    <input type="number" name="bank_address" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="开户银行所在地" class="form-control">
+                                </div>
+                                <div id="email-error"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></span>
+                                    <input type="number" name="branch" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="开户银行支行名称" class="form-control">
                                 </div>
                                 <div id="email-error"></div>
                             </div>
@@ -78,8 +88,8 @@
 
 
                         <div class="foot">
-                            <a href="{{url('admin/login/index')}}" class="btn btn-default" data-dismiss="modal" type="button">登陆</a>
-                            <button class="btn btn-primary" data-dismiss="modal" type="submit">下一步</button>
+                            <button href="" class="btn btn-default" data-dismiss="modal" type="button" onclick="history.back();">上一步</button>
+                            <button class="btn btn-primary" data-dismiss="modal" type="submit">注册</button>
                         </div>
 
                     </div>

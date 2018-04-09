@@ -3,6 +3,7 @@
 
 <!-- Mirrored from condorthemes.com/cleanzone/pages-sign-up.html by HTTrack Website Copier/3.x [XR&CO'2013], Mon, 31 Mar 2014 14:37:32 GMT -->
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -22,6 +23,8 @@
 
     <!-- Custom styles for this template -->
     <link href="/static/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/webuploader/webuploader.css">
+
 
 </head>
 
@@ -35,7 +38,7 @@
                 <h3 class="text-center"><img class="logo-img" src="/static/images/logo.png" alt="logo"/>易证后台管理系统</h3>
             </div>
             <div>
-                <form style="margin-bottom: 0px ;" method="post" class="form-horizontal" action="" parsley-validate novalidate>
+                <form style="margin-bottom: 0px ;" method="post" class="form-horizontal" action="{{url('admin/login/register2')}}" parsley-validate novalidate>
                     {{ csrf_field() }}
                     <div class="content">
                         <h5 class="title text-center"><strong>公司信息</strong></h5>
@@ -44,7 +47,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></span>
-                                    <input type="text" name="enterprise_name" parsley-trigger="change" parsley-error-container="#nick-error" required placeholder="企业用户名" class="form-control">
+                                    <input type="text" name="company_name" parsley-trigger="change" parsley-error-container="#nick-error" required placeholder="企业用户名" class="form-control">
                                 </div>
                                 <div id="nick-error"></div>
                             </div>
@@ -62,7 +65,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></span>
-                                    <input type="number" name="Organization_code" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="组织机构代码" class="form-control">
+                                    <input type="number" name="organization_code" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="组织机构代码" class="form-control">
                                 </div>
                                 <div id="email-error"></div>
                             </div>
@@ -71,7 +74,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></span>
-                                    <input type="number" name="Identification_number" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="身份识别号" class="form-control">
+                                    <input type="number" name="identification_number" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="身份识别号" class="form-control">
                                 </div>
                                 <div id="email-error"></div>
                             </div>
@@ -139,6 +142,13 @@
                                 <div id="email-error"></div>
                             </div>
                         </div>
+                        <div id="uploader-demo">
+                            <!--用来存放item-->
+                            <div id="fileList" class="uploader-list"></div>
+                            <div id="filePicker">选择图片</div>
+                            <img id='img_logo' src="">
+                            <input type="hidden" class="text input-large" id="img" name="img" value="">
+                        </div>
 
 
                         <div class="foot">
@@ -154,11 +164,51 @@
     </div>
 
 </div>
-
-
 <script src="/static/js/jquery.js"></script>
+<script src="/static/webuploader/webuploader.js"></script>
+
 <script src="/static/js/jquery.parsley/dist/parsley.js" type="text/javascript"></script>
 <script src="/static/js/behaviour/general.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+
+
+    // 初始化Web Uploader
+    var uploader = WebUploader.create({
+
+            // 选完文件后，是否自动上传。
+            auto: true,
+
+            // swf文件路径
+            swf: '/webuploader/Uploader.swf',
+
+            // 文件接收服务端。
+            server: '{{url('admin/login/logo')}}',
+
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: '#filePicker',
+
+        // 只允许选择图片文件。
+        accept: {
+        title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+    }
+    });
+
+    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+    uploader.on( 'uploadSuccess', function( file,response ) {
+
+        var imgFile = response.url
+        // console.log(imgFile);
+        $('#img').val(imgFile)
+        //图片回显
+        $('#img_logo').attr('src',imgFile);
+        $( '#'+file.id ).addClass('upload-state-done');
+    });
+
+</script>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

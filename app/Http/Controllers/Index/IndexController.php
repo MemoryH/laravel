@@ -16,6 +16,8 @@ class IndexController extends BaseController
     protected $skip_func = true;
 
     protected function index(){
+//        var_dump($this->is_login);exit;
+//        var_dump($_COOKIE);exit;
         return view($this->domain.'/'.$this->controller.'/'.$this->method);
     }
 

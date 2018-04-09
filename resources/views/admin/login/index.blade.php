@@ -57,7 +57,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group">
 
-                                    <input type="number" placeholder="验证码" class="form-control" style="width: 50%" name="code">
+                                    <input type="text" placeholder="验证码" class="form-control" style="width: 50%" name="code">
                                     <img src="{{url('admin/code/code')}}" style="height: auto;padding: 2px 1px;" alt="" onclick="this.src='{{url('admin/code/code')}}?'+Math.random()" >
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
 
                     </div>
                     <div class="foot">
-                        <a href="{{url('admin/login/register')}}" class="btn btn-default" data-dismiss="modal" type="button">注册</a>
+                        {{--<a href="{{url('admin/login/register')}}" class="btn btn-default" data-dismiss="modal" type="button">注册</a>--}}
                         <button class="btn btn-primary" data-dismiss="modal" type="submit">登陆</button>
                     </div>
                 </form>

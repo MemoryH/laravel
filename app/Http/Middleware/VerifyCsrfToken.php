@@ -23,5 +23,7 @@ class VerifyCsrfToken extends Middleware
         'admin/api/swap/update_attach',
         'admin/api/site/up_home_img',
         'admin/api/site/update_img',
+        'admin/login/logo',
+        'admin/login/register',
     ];
 }

@@ -26,9 +26,10 @@ class CodeController extends BaseController
         $phrase = $builder->getPhrase();
 
        //把内容存入session
-        $session = new Session();
-        $session->set('code',$phrase);
-var_dump($_SESSION);
+request()->session()->put('code',$phrase);
+
+
+//var_dump($this->session);
 //        ob_clean(); //清除缓存
 //        echo "<pre>";
 //        var_dump($_SESSION);exit;
