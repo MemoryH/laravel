@@ -3,11 +3,15 @@ namespace App\Http\Controllers\Login;
 
 
 use App\Http\Controllers\BaseController;
+use App\Http\Model\Login\BankModel;
+use App\Http\Model\Login\CompanyModel;
 use App\Http\Model\Login\UserModel;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+// 引入鉴权类
 use Qiniu\Auth;
+// 引入上传类
 use Qiniu\Storage\UploadManager;
 
 class LoginController extends BaseController
@@ -92,7 +96,7 @@ class LoginController extends BaseController
 
                     return view($this->domain.'/'.$this->controller.'/'.$this->method);
                 }
-                $user = DB::select("select * from `user` WHERE `name`={$username}");
+                $user = DB::select("select * from `user` WHERE `telephone`={$username}");
                 if (!empty($user)){
                     if (password_verify($password,$user[0]->password)){
 
@@ -126,22 +130,38 @@ class LoginController extends BaseController
         if (request()->isMethod('post')){
 //            var_dump(request()->post());exit;
 
-            $data = $this->formatData(['telephone', 'name', 'position', 'identity_id','password'], $this->request->input());
-//            var_dump($data);exit;
-            if ($data){
+            $user = $this->formatData(['telephone', 'name', 'position', 'identity_id','password'], $this->request->input());
+            $company = $this->formatData(['company_name','merchant','organization_code','register_address','identification_number','scope','capital','validity_time','address','company_tel'],$this->request->input());
+            $bank = $this->formatData(['username','bank_account','bank_name','bank_address','branch'],$this->request->input());
+//            //            var_dump($data);exit;
+//            var_dump($user,$company,$bank);
+            if ($user){
+                $password = password_hash($user['password'],PASSWORD_BCRYPT);
                 $user_data = [
-                    'name'  => $data['name'],
-                    'telephone'  => $data['telephone'],
-                    'password'  => $data['password'],
-                    'position'  => $data['position'],
-                    'identity_id'  => $data['identity_id'],
+                    'name'  => $user['name'],
+                    'telephone'  => $user['telephone'],
+                    'password'  => $password,
+                    'position'  => $user['position'],
+                    'identity_id'  => $user['identity_id'],
                     'creat_time'  => time(),
 
                 ];
-                $user_data = json_encode($user_data);
+                //实例化模型
+                $user_model = new UserModel();
+                $company_model = new CompanyModel();
+                $bank_model = new BankModel();
+                //开启事务
+                $user_model->StartTransaction();
+                $user_model->add($user_data);
+                $company_model->add($company);
+                $bank_model->add($bank);
+                if ($user_model->TransactionCommit()){
+                    echo '注册成功';
+                }else{
+                    $user_model->TransactionRollback();
+                    echo '注册失败';
+                }
 
-                setcookie('user',$user_data,time()+3600);
-                echo 1;
 
             }
         }
@@ -192,7 +212,8 @@ class LoginController extends BaseController
             //文件保存成功 返回文件路径
             $accessKey ="TxMyeDQ095vC5DtBNrUmE_PqD-Ds6I1mz3i__KJk";
             $secretKey = "M69Cr5LgZCbmJrdmxqRfDl2qvdPYiZB8nZ6P9F7g";
-            $bucket = "property";
+
+            $bucket = "laravel";
             // 构建鉴权对象
             $auth = new Auth($accessKey, $secretKey);
             // 生成上传 Token
@@ -200,18 +221,15 @@ class LoginController extends BaseController
             // 要上传文件的本地路径
             $filePath = $file;
             // 上传到七牛后保存的文件名
-            $key = '/'.$fileName;
+            $key = 'my-php-logo.png';
             // 初始化 UploadManager 对象并进行文件的上传。
             $uploadMgr = new UploadManager();
             // 调用 UploadManager 的 putFile 方法进行文件的上传。
             list($ret, $err) = $uploadMgr->putFile($token, $key, $filePath);
-//        echo "\n====> putFile result: \n";
-            if ($err == null) {
-                return json_encode([
-                    'url'=>"http://p61el74ia.bkt.clouddn.com/{$key}"
-                ]);
-            } else {
+            if ($err !== null) {
                 var_dump($err);
+            } else {
+                var_dump($ret);
             }
 //            return json_encode([
 //                'url'=>$file
@@ -223,7 +241,7 @@ class LoginController extends BaseController
 
     //退出登陆
     protected function logout(){
-
+        request()->session()->remove('user_info');
         //跳转到登陆页面
         return redirect('admin/login/index');
     }

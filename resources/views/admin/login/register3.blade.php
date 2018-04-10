@@ -62,7 +62,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></span>
-                                    <input type="number" name="bank_nam" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="开户银行名称" class="form-control">
+                                    <input type="number" name="bank_name" parsley-trigger="change" parsley-error-container="#email-error" required placeholder="开户银行名称" class="form-control">
                                 </div>
                                 <div id="email-error"></div>
                             </div>

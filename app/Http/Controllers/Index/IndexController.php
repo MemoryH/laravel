@@ -18,7 +18,13 @@ class IndexController extends BaseController
     protected function index(){
 //        var_dump($this->is_login);exit;
 //        var_dump($_COOKIE);exit;
-        return view($this->domain.'/'.$this->controller.'/'.$this->method);
+        if(request()->session()->get('user_info')){
+            return view($this->domain.'/'.$this->controller.'/'.$this->method);
+        }else{
+//            var_dump(request()->session()->get('user_info'));exit;
+            return redirect($this->domain.'/login/index');
+        }
+
     }
 
 
