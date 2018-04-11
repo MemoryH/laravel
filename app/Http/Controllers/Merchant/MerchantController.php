@@ -21,7 +21,7 @@ class MerchantController extends BaseController
         $merchant = new MerchantModel();
 
         $res = DB::select('select * from merchant');
-        echo json_encode($res);
+        return view($this->domain.'/'.$this->controller.'/'.$this->method,['res'=>$res]);
     }
     //删除商户
     protected function del($id){
@@ -39,10 +39,15 @@ class MerchantController extends BaseController
 
     //新增商户
     protected function add(){
-        $merchant = new MerchantModel();
+        if (request()->isMethod('POST')){
+            $merchant = new MerchantModel();
 
-        $date = $this->formatData(['merchant_name','type','regio','contacts','contacts_number'],$this->request->input());
-        var_dump($date);
+            $date = $this->formatData(['merchant_name','type','regio','contacts','contacts_number'],$this->request->input());
+            var_dump($date);
+        }else{
+            return view($this->domain.'/'.$this->controller.'/'.$this->method);
+        }
+
     }
 
 }

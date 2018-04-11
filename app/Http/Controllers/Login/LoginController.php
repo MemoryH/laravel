@@ -100,6 +100,10 @@ class LoginController extends BaseController
                 if (!empty($user)){
                     if (password_verify($password,$user[0]->password)){
 
+                        $ip = $_SERVER['REMOTE_ADDR'];
+                        $time = time();
+                        $ip = ip2long($ip);
+                        DB::update("update `user` SET last_login_time={$time},last_login_ip={$ip} WHERE id={$user[0]->id}");
                         request()->session()->put('user_info',$user[0]);
                         $success_user = request()->session()->get('user_info');
 //                        var_dump($success_user->id);exit;
@@ -164,6 +168,8 @@ class LoginController extends BaseController
 
 
             }
+        }else{
+            return view($this->domain.'/'.$this->controller.'/'.$this->method);
         }
 
     }

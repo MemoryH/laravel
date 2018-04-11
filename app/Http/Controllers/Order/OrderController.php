@@ -17,9 +17,10 @@ class OrderController extends BaseController
     protected $skip_func = true;
 
     protected function index(){
-       $res =  DB::table('test_order')->get();
-
-        echo json_encode($res);
+//       $orders =  DB::table('test_order')->get();
+//        var_dump(111);exit;
+        $res = DB::select('select * from test_order');
+        return view($this->domain.'/'.$this->controller.'/'.$this->method,['orders'=>$res]);
     }
 
     //详情页面
