@@ -63,7 +63,9 @@ class LoginController extends BaseController
                 'code'     => 'min:5|max:5'
             ],
         ]
+
     ];
+
 //用户登录页面
     protected function index(){
         if (request()->isMethod('post')){
@@ -73,7 +75,7 @@ class LoginController extends BaseController
                     'code' => 417,
                     'msg'  => implode(',', $result)
                 ];
-                return view($this->domain.'/'.$this->controller.'/'.$this->method);
+                return view($this->domain.'/'.$this->controller.'/'.$this->method)->withErrors($content['msg']);
 
             }else{
                 $username = $this->request->input('username');
@@ -94,25 +96,33 @@ class LoginController extends BaseController
                         'msg'  => '验证码输入错误'
                     ]);
 
-                    return view($this->domain.'/'.$this->controller.'/'.$this->method);
+                    return redirect($this->domain.'/'.$this->controller.'/'.$this->method)->withErrors(['验证码错误']);
                 }
-                $user = DB::select("select * from `user` WHERE `telephone`={$username}");
+                $user = DB::select("select * from `company_user` WHERE `contacts_number`={$username}");
+//var_dump($user[0]);exit;
                 if (!empty($user)){
+                    //判断是否为平台账户
+                    if (!empty(DB::table('company_merchant')->where(['contacts_number'=>$username,'source'=>2])->first())){
+                        return redirect($this->domain.'/'.$this->controller.'/'.$this->method)->withErrors(['非平台账户']);
+                    }
                     if (password_verify($password,$user[0]->password)){
 
                         $ip = $_SERVER['REMOTE_ADDR'];
                         $time = time();
                         $ip = ip2long($ip);
-                        DB::update("update `user` SET last_login_time={$time},last_login_ip={$ip} WHERE id={$user[0]->id}");
-                        request()->session()->put('user_info',$user[0]);
+
+                        DB::update("update `company_user` SET last_login_time={$time},last_login_ip={$ip} WHERE id={$user[0]->id}");
+                        $res = DB::table('company_merchant')->where(['merchant_id'=>$user[0]->merchant_id])->get();
+
+                        request()->session()->put('user_info',$res[0]);
                         $success_user = request()->session()->get('user_info');
-//                        var_dump($success_user->id);exit;
+//                        var_dump($success_user);exit;
                         return redirect('admin/index/index');
                     }else{
-
+                        return redirect($this->domain.'/'.$this->controller.'/'.$this->method)->withErrors(['用户名或密码错误']);
                     }
                 }
-                return view($this->domain.'/'.$this->controller.'/'.$this->method);
+                return view($this->domain.'/'.$this->controller.'/'.$this->method)->withErrors(['用户名或密码错误']);
 //                $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 //
 //

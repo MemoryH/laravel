@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<a href="" download="canvas.png" id="save">下载</a>
+		<img src="" id="save_img" style="display: none;"/>
+		<canvas id="myCanvas"></canvas>
+		<script src="/js/jquery.min.js"></script>
+		<script>
+			var imgBox = $("<img>");
+			imgBox.attr('src', '/images/1.jpg');
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+			imgBox.load(function() {
+				c.width = this.width;
+				c.height = this.height;
+				ctx.drawImage(imgBox[0], 0, 0);
+			});
+			var flag = false;
+			$('html').mouseup(function() {
+				flag = false;
+			});
+			$(c).mousedown(function(e) {
+				flag = true;
+				draw(this,e);
+			});
+			$(c).mousemove(function(e) {
+				if(flag) {
+					draw(this,e);
+				}
+			});
+			function draw(obj,e) {
+				var width = obj.width;
+				var height = obj.height;
+				var offsetX = e.offsetX;
+				var offsetY = e.offsetY;
+				var minX = offsetX - 10 < 0 ? 0 : offsetX - 10;
+				var maxX = offsetX + 10 > width ? width : offsetX + 10;
+				var minY = offsetY - 10 < 0 ? 0 : offsetY - 10;
+				var maxY = offsetY + 10 > height ? height : offsetY + 10;
+				var startY = (minY * width * 4);
+				var endY = (maxY * width * 4);
+				var ImgData = ctx.getImageData(0, 0, width, height);
+				for(var i = startY; i <= endY; i += 4) {
+
+					if((i % (width * 4) > minX * 4) && (i % (width * 4) < maxX * 4)) {
+						ImgData.data[i] = parseInt(Math.random() * 255);
+						ImgData.data[i + 1] = parseInt(Math.random() * 255);
+						ImgData.data[i + 2] = parseInt(Math.random() * 255);
+						ImgData.data[i + 3] = parseInt(Math.random() * 255);
+					}
+				}
+				ctx.putImageData(ImgData, 0, 0);
+			}
+			
+			$('#save').click(function(){
+				var tempSrc = c.toDataURL("image/png");
+    			$(this).attr('href',tempSrc);
+    			$('#save_img').attr('src',tempSrc);
+			});
+		</script>
+	</body>
+
+</html>

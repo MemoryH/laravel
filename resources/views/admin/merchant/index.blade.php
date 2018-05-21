@@ -1,214 +1,323 @@
+<!-- 更多资源下载请加QQ群：304104682 -->
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Mirrored from condorthemes.com/cleanzone/ by HTTrack Website Copier/3.x [XR&CO'2013], Mon, 31 Mar 2014 14:31:31 GMT -->
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="/static/images/favicon.png">
-
-    <title>Clean Zone</title>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
-
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
-    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" type="text/css" href="/static/js/jquery.gritter/css/jquery.gritter.css" />
-
-{{--<link rel="stylesheet" type="text/css" href="/static/js/jquery.nanoscroller/nanoscroller.css" />--}}
-{{--<link rel="stylesheet" type="text/css" href="/static/js/jquery.easypiechart/jquery.easy-pie-chart.css" />--}}
-{{--<link rel="stylesheet" type="text/css" href="/static/js/bootstrap.switch/bootstrap-switch.css" />--}}
-{{--<link rel="stylesheet" type="text/css" href="/static/js/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />--}}
-{{--<link rel="stylesheet" type="text/css" href="/static/js/jquery.select2/select2.css" />--}}
-{{--<link rel="stylesheet" type="text/css" href="/static/js/bootstrap.slider/css/slider.css" />--}}
-{{--<link rel="stylesheet" type="text/css" href="/static/js/intro.js/introjs.css" />--}}
-<!-- Custom styles for this template -->
-    <link href="/static/css/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/static/webuploader/webuploader.css">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>网站后台管理模版</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/admin.css"/>
 
 </head>
 <body>
-
-<!-- Fixed navbar -->
-<div id="head-nav" class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="fa fa-gear"></span>
-            </button>
-            <a class="navbar-brand" href="#"><span>后台管理系统</span></a>
+<form action="" class="layui-form">
+    <div class="layui-form-item">
+        <div class="" style="width: 200px;float: left">
+            <input type="text" name="merchant_sn" placeholder="请输入商户编码" autocomplete="off" value="{{!empty(request()->get('merchant_sn'))?request()->get("merchant_sn"):''}}" class="layui-input">
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="{{url('admin/index/index')}}">首页</a></li>
-                <li><a href="{{url('admin/login/register')}}" id="add_user">添加企业用户</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right user-nav">
-                <li class="dropdown profile_menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="/static/images/avatar2.jpg" /><span>{{request()->session()->get('user_info')->name}}</span> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
 
-                        <li><a href="{{url('admin/login/logout')}}">退出登录</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-        </div><!--/.nav-collapse animate-collapse -->
-    </div>
-</div>
-
-<div id="cl-wrapper" class="fixed-menu">
-    <div class="cl-sidebar" data-position="right" data-step="1" data-intro="<strong>Fixed Sidebar</strong> <br/> It adjust to your needs." >
-        <div class="cl-toggle"><i class="fa fa-bars"></i></div>
-        <div class="cl-navblock">
-            <div class="menu-space">
-                <div class="content">
-                    {{--个人信息--}}
-                    <div class="side-user">
-                        <div class="avatar"><img src="/static/images/avatar1_50.jpg" alt="Avatar" /></div>
-                        <div class="info">
-                            <a href="#">{{request()->session()->get('user_info')->name}}</a>
-                            <img src="/static/images/state_online.png" alt="Status" /> <span>Online</span>
-                        </div>
-                    </div>
-
-                    <ul class="cl-vnavigation">
-                        <li><a href="#"><i class="fa fa-home"></i><span>订单管理</span></a>
-                            <ul class="sub-menu">
-                                <li class="active"><a href="javascript:;" id="order">订单列表</a></li>
-                                {{--<li><a href="dashboard2.html"><span class="label label-primary pull-right">New</span> Version 2</a></li>--}}
-                            </ul>
-                        </li>
-                        <li><a href="#"><i class="fa fa-home"></i><span>商户管理</span></a>
-                            <ul class="sub-menu">
-                                <li class=""><a href="javascript:;" id="merchant">商户列表</a></li>
-                                <li class=""><a href="{{url('admin/merchant/add')}}" id="add_merchant">新增商户</a></li>
-                                {{--<li><a href="dashboard2.html"><span class="label label-primary pull-right">New</span> Version 2</a></li>--}}
-                            </ul>
-                        </li>
-
-                    </ul>
-                </div>
+            <div class="" style="width: 200px;float: left">
+                <select name="category_id" class="form-control" lay-verify="required">
+                    <option value="">==选择单位==</option>
+                    <option value="1" {{!empty($result)?$result->category_id==1?'selected':'':''}}>企业</option>
+                    <option value="2" {{!empty($result)?$result->category_id==2?'selected':'':''}}>事业单位</option>
+                    <option value="3" {{!empty($result)?$result->category_id==3?'selected':'':''}}>民办非企业单位</option>
+                    <option value="4" {{!empty($result)?$result->category_id==4?'selected':'':''}}>个体工商户</option>
+                    <option value="5" {{!empty($result)?$result->category_id==5?'selected':'':''}}>社会团体</option>
+                    <option value="6" {{!empty($result)?$result->category_id==6?'selected':'':''}}>党政及国家机关</option>
+                </select>
             </div>
 
+        <div class="" style="width: 200px;float: left">
+            <select name="type" id="" class="form-control">
+                <option value="">==请选择企业类型==</option>
+                <option value="0" {{(request()->get('type')==='0')?'selected':''}}>个人</option>
+                <option value="1" {{request()->get('type')==1?'selected':''}}>企业</option>
+            </select>
         </div>
-    </div>
-    {{--内容部分--}}
-    <div class="container-fluid" id="pcont">
-        <div class="cl-mcont">
-
-            <table class="table table-bordered" id="datatable">
-                <thead>
-                <tr>
-                    <th>商户名称</th>
-                    <th>所属地区</th>
-                    <th>联系人</th>
-                    <th>联系电话</th>
-                    <th>管理员</th>
-                    <th>操作时间</th>
-                    <th>员工人数</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($res as $re)
-                    <tr class="odd gradeX">
-                        <td>{{$re->merchant_name}}</td>
-                        <td>{{$re->regio}}</td>
-                        <td>{{$re->contacts}}</td>
-                        <td>{{$re->contacts_number}}</td>
-                        <td>{{$re->charges}}</td>
-                        <td>{{$re->update_time}}</td>
-                        <td>{{$re->counts}}</td>
-                        <td class="center"><a href="{{url("admin/order/intro?id=$re->id")}}">查看员工</a> <a
-                                    href="{{url("admin/order/intro?id=$re->id")}}">编辑</a> <a
-                                    href="{{url("admin/order/intro?id=$re->id")}}">删除</a></td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+        <div class="" style="width: 200px;float: left">
+            <select name="status" id="" class="form-control">
+                <option value="">==审核状态==</option>
+                <option value="0" {{(request()->get('status')=='0')?'selected':''}}>待审核</option>
+                <option value="1" {{request()->get('status')==1?'selected':''}}>通过</option>
+                <option value="2" {{request()->get('status')==2?'selected':''}}>未通过</option>
+            </select>
+        </div>
+        <div class="" style="width: 200px;float: left">
+            <select name="provid" id="provid" lay-filter="provid" position="{{request()->get('provid')}}">
+                <option value="">请选择省</option>
+            </select>
+        </div>
+        <div class="" style="width: 200px;float: left">
+            <select name="cityid" id="cityid" lay-filter="cityid" position="{{request()->get('cityid')}}">
+                <option value="">请选择市</option>
+            </select>
+        </div>
+        <div class="" style="width: 200px;float: left;display: none">
+            <select name="areaid" id="areaid" lay-filter="areaid">
+                <option value="">请选择县/区</option>
+            </select>
+        </div>
+        <div class="" style="width: 200px;float: left">
+            <button class="layui-btn layui-btn-normal go-btn">搜索</button>
         </div>
     </div>
 
-</div>
 
-<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-<script src="/static/webuploader/webuploader.js"></script>
-<script type="text/javascript" src="/static/js/jquery.gritter/js/jquery.gritter.js"></script>
+</form>
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>商户编码</th>
+        <th>商户名称</th>
+        <th>所属地区</th>
+        <th>联系人</th>
+        <th>联系电话</th>
+        <th>操作时间</th>
+        <th>员工人数</th>
+        <th>商户状态</th>
+        <th>商户来源</th>
+        <th>商户标识</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach($res as $re)
+        @if(!empty($re->merchant_id))
+            <?php
+            $id = $re->merchant_id;
+            $company = \Illuminate\Support\Facades\DB::table('company')->where('id',$id)->first();
+            ?>
 
-<script type="text/javascript" src="/static/js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
-<script type="text/javascript" src="/static/js/behaviour/general.js"></script>
-<script src="/static/js/jquery.ui/jquery-ui.js" type="text/javascript"></script>
-<script type="text/javascript" src="/static/js/jquery.sparkline/jquery.sparkline.min.js"></script>
-<script type="text/javascript" src="/static/js/jquery.easypiechart/jquery.easy-pie-chart.js"></script>
-<script type="text/javascript" src="/static/js/jquery.nestable/jquery.nestable.js"></script>
-<script type="text/javascript" src="/static/js/bootstrap.switch/bootstrap-switch.min.js"></script>
-<script type="text/javascript" src="/static/js/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-<script src="/static/js/jquery.select2/select2.min.js" type="text/javascript"></script>
-<script src="/static/js/skycons/skycons.js" type="text/javascript"></script>
-<script src="/static/js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
-<script src="/static/js/intro.js/intro.js" type="text/javascript"></script>
-
-
-
+            @endif
+    <tr class="" merchant_id='{{!empty($company)?$company->id:''}}' phone="{{$re->contacts_number}}">
+        <td>{{$re->merchant_sn}}</td>
+        <td>{{$re->merchant_name}}</td>
+        <td class="">{{$re->province.'&nbsp;'.$re->city}}</td>
+        <td class="center">{{$re->contacts}}</td>
+        <td class="center">{{$re->contacts_number}}</td>
+        <td class="center">{{date('Y-m-d H:i:s',!empty($company)?$company->update_time:0)}}</td>
+        <td class="center">{{$re->counts}}</td>
+        <td class="center" class="examine">{{!empty($company)?($company->status==0?'待审核':($company->status==1?'审核通过':'审核未通过')):''}}</td>
+        <td class="center">{{$re->source==1?'平台':'APP'}}</td>
+        <td class="center">{{!empty($company)?$company->identification:''}}</td>
+        <td class="center">
+            <a class="layui-btn layui-btn-small layui-btn-normal go-btn show_staff">查看员工</a>
+            <a href="javascript:;" class="layui-btn layui-btn-small layui-btn-normal go-btn merchant_edit"><i class="layui-icon"></i>编辑</a>
+            <a href="javascript:;" class="del layui-btn layui-btn-small layui-btn-danger del-btn">删除</a>
+            @if(!empty($company))
+                @if($company->status !=1)
+                <a href="javascript:;" class="layui-btn layui-btn-small layui-btn-normal go-btn show_merchant" status="1">审核</a>
+                @endif
+                    @if($company->status ==2)
+                        <a href="javascript:;" class="layui-btn layui-btn-small layui-btn-normal go-btn layui-btn-disabled" status="1">审核未通过</a>
+                    @endif
+            @endif
+            <a href="javascript:;" class="layui-btn layui-btn-small layui-btn-normal go-btn merchant_user" status="1">绑定会员</a>
+            <a href="javascript:;" class="layui-btn layui-btn-small layui-btn-normal go-btn department" status="1">查看部门</a>
+        </td>
+    </tr>
+    @endforeach
+    </tbody>
+</table>
+{{$res->appends(['category_id'=>$res->category_id,'merchant_sn'=>$res->merchant_sn,'type'=>$res->type,'status'=>$res->status])->render()}}
+<script src="/static/admin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/admin/js/common.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/admin/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+{{--<script src="/js/data.js" type="text/javascript" charset="utf-8"></script>--}}
+<script src="/js/province.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+//三级联动
+    var province = $('#provid').attr('position');
+    var city = $('#cityid').attr('position')
+    var defaults = {
+        s1: 'provid',
+        s2: 'cityid',
+        s3: 'areaid',
+        v1: province?province:null,
+        v2: city?city:null,
+        v3: null
+    };
+//修改商户状态
+$(document).on('click','.show_merchant',function () {
+    var merchant_id = $(this).closest('tr').attr('merchant_id');
+    // console.log(merchant_id);
 
-    var uploader = WebUploader.create({
+    index =layer.open({
 
-        // 选完文件后，是否自动上传。
-        auto: true,
+        type:2,
 
-        // swf文件路径
-        swf: '/static/Uploader.swf',
+        title:"审核",
+        btn:['关闭'],
+        yes:function(index,layero){
+            layer.closeAll('iframe')
+        },
+        area: ['100%','100%'],
 
-        // 文件接收服务端。
-        server: 'http://webuploader.duapp.com/server/fileupload.php',
+        closeBtn: 0,
+        // maxmin:true,
 
-        // 选择文件的按钮。可选。
-        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-        pick: '#filePicker',
+        shadeClose: true,
 
-        // 只允许选择图片文件。
-        accept: {
-            title: 'Images',
-            extensions: 'gif,jpg,jpeg,bmp,png',
-            mimeTypes: 'image/*'
-        }
+        content: 'show_merchant?merchant_id='+merchant_id
+
+
     });
 
 
-    $(document).ready(function(){
-        //initialize the javascript
-        App.init();
-        App.dashBoard();
-//          introJs().setOption('showBullets', false).start();
+});
+    //删除
+    $(document).on('click','.del',function () {
+        var tr = $(this).closest('tr')
+        var id = $(this).closest('tr').attr('merchant_id');
+        $data = {
+            'id':id
+        };
+        layer.msg('你确定删除吗？', {
+            time: 0 //不自动关闭
+            ,btn: ['确认', '取消']
+            ,yes: function(index){
+                layer.close(index);
+                $.get("{{url('admin/merchant/del')}}",$data,function (res) {
+
+                    if(res){
+
+                        tr.remove();
+                    }
+                })
+                layer.msg('删除成功', {
+                    icon: 6
+                    ,btn: ['确定']
+                });
+            }
+        });
+
+
+    });
+
+//修改商户
+    $(document).on('click','.merchant_edit',function () {
+        var merchant_id = $(this).closest('tr').attr('merchant_id');
+        // console.log(merchant_id);
+
+            index =layer.open({
+
+                type:2,
+
+                title:"编辑商户",
+                btn:['关闭'],
+                yes:function(index,layero){
+                    layer.closeAll('iframe')
+                },
+                area: ['100%','100%'],
+
+                closeBtn: 0,
+                // maxmin:true,
+
+                shadeClose: true,
+
+                content: 'edit?id='+merchant_id
+
+
+        });
+
+
+    });
+//绑定会员
+    $(document).on('click','.merchant_user',function () {
+    var phone = $(this).closest('tr').attr('phone');
+    var merchant_id = $(this).closest('tr').attr('merchant_id');
+    // console.log(merchant_id);
+
+    index =layer.open({
+
+        type:2,
+
+        title:"绑定会员",
+        btn:['关闭'],
+        yes:function(index,layero){
+            layer.closeAll('iframe')
+        },
+        area: ['1100px','600px'],
+
+        closeBtn: 0,
+        // maxmin:true,
+
+        shadeClose: true,
+
+        content: 'user?phone='+phone+'&merchant_id='+merchant_id
+
+
     });
 
 
+});
 
+    //查看部门
+$(document).on('click','.department',function () {
+    var merchant_id = $(this).closest('tr').attr('merchant_id');
+    // console.log(merchant_id);
+
+    index =layer.open({
+
+        type:2,
+
+        title:"部门列表",
+        btn:['关闭'],
+        yes:function(index,layero){
+            layer.closeAll('iframe')
+        },
+        area: ['100%','100%'],
+
+        closeBtn: 0,
+        // maxmin:true,
+
+        shadeClose: true,
+
+        content: 'department?merchant_id='+merchant_id
+
+
+    });
+
+
+});
+
+//查看员工
+$(document).on('click','.show_staff',function () {
+    var merchant_id = $(this).closest('tr').attr('merchant_id');
+    // console.log(merchant_id);
+
+    index =layer.open({
+
+        type:2,
+
+        title:"查看员工",
+        btn:['关闭'],
+        yes:function(index,layero){
+            layer.closeAll('iframe')
+        },
+        area: ['100%','100%'],
+
+        closeBtn: 0,
+        // maxmin:true,
+
+        shadeClose: true,
+
+        content: '{{url('admin/staff/staff')}}?id='+merchant_id
+
+
+    });
+
+
+});
 </script>
-
-<!-- Bootstrap core JavaScript
-  ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-
-<script src="/static/js/behaviour/voice-commands.js"></script>
-<script src="/static/js/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/static/js/jquery.flot/jquery.flot.js"></script>
-<script type="text/javascript" src="/static/js/jquery.flot/jquery.flot.pie.js"></script>
-<script type="text/javascript" src="/static/js/jquery.flot/jquery.flot.resize.js"></script>
-<script type="text/javascript" src="/static/js/jquery.flot/jquery.flot.labels.js"></script>
 </body>
-
-<!-- Mirrored from condorthemes.com/cleanzone/ by HTTrack Website Copier/3.x [XR&CO'2013], Mon, 31 Mar 2014 14:32:27 GMT -->
 </html>

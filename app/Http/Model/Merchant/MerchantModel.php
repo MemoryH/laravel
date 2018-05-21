@@ -3,11 +3,15 @@ namespace App\Http\Model\Merchant;
 
 
 use App\Http\Model\BaseModel;
+use Illuminate\Notifications\Notifiable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class MerchantModel extends BaseModel
 {
+    use Notifiable;
+    use EntrustUserTrait;
     //当前表名称（别名始终为:current_model）
-    protected $table_name = 'merchant';
+    protected $table_name = 'company_merchant';
 
     public function __construct () {
         parent::__construct();
@@ -30,9 +34,12 @@ class MerchantModel extends BaseModel
         // TODO: Implement acquireCount() method.
     }
 
-    protected function add($data)
-    {
-        // TODO: Implement add() method.
+    public function add ($data, $primary_key=null) {
+
+        $this->ResetModel();
+
+        return $this->current_model->insertGetId($data, $primary_key);
+
     }
 
     protected function addMore($datas)

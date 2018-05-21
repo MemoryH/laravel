@@ -1,225 +1,203 @@
+<!-- 更多资源下载请加QQ群：304104682 -->
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Mirrored from condorthemes.com/cleanzone/ by HTTrack Website Copier/3.x [XR&CO'2013], Mon, 31 Mar 2014 14:31:31 GMT -->
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="/static/images/favicon.png">
-
-    <title>Clean Zone</title>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
-
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
-	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <![endif]-->
-	    <link rel="stylesheet" type="text/css" href="/static/js/jquery.gritter/css/jquery.gritter.css" />
-
-  {{--<link rel="stylesheet" type="text/css" href="/static/js/jquery.nanoscroller/nanoscroller.css" />--}}
-  {{--<link rel="stylesheet" type="text/css" href="/static/js/jquery.easypiechart/jquery.easy-pie-chart.css" />--}}
-	{{--<link rel="stylesheet" type="text/css" href="/static/js/bootstrap.switch/bootstrap-switch.css" />--}}
-	{{--<link rel="stylesheet" type="text/css" href="/static/js/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css" />--}}
-	{{--<link rel="stylesheet" type="text/css" href="/static/js/jquery.select2/select2.css" />--}}
-	{{--<link rel="stylesheet" type="text/css" href="/static/js/bootstrap.slider/css/slider.css" />--}}
-	{{--<link rel="stylesheet" type="text/css" href="/static/js/intro.js/introjs.css" />--}}
-  <!-- Custom styles for this template -->
-  <link href="/static/css/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/static/webuploader/webuploader.css">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>易证后台管理</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/admin.css"/>
 
 </head>
 <body>
-
-  <!-- Fixed navbar -->
-  <div id="head-nav" class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="fa fa-gear"></span>
-        </button>
-        <a class="navbar-brand" href="#"><span>后台管理系统</span></a>
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="{{url('admin/index/index')}}">首页</a></li>
-          <li><a href="{{url('admin/login/register')}}" id="add_user">添加企业用户</a></li>
-        </ul>
-    <ul class="nav navbar-nav navbar-right user-nav">
-      <li class="dropdown profile_menu">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img alt="Avatar" src="/static/images/avatar2.jpg" /><span>{{request()->session()->get('user_info')->name}}</span> <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-
-          <li><a href="{{url('admin/login/logout')}}">退出登录</a></li>
-        </ul>
-      </li>
-    </ul>
-
-      </div><!--/.nav-collapse animate-collapse -->
-    </div>
-  </div>
-
-	<div id="cl-wrapper" class="fixed-menu">
-		<div class="cl-sidebar" data-position="right" data-step="1" data-intro="<strong>Fixed Sidebar</strong> <br/> It adjust to your needs." >
-			<div class="cl-toggle"><i class="fa fa-bars"></i></div>
-			<div class="cl-navblock">
-        <div class="menu-space">
-          <div class="content">
-              {{--个人信息--}}
-            <div class="side-user">
-              <div class="avatar"><img src="/static/images/avatar1_50.jpg" alt="Avatar" /></div>
-              <div class="info">
-                <a href="#">{{request()->session()->get('user_info')->name}}</a>
-                <img src="/static/images/state_online.png" alt="Status" /> <span>Online</span>
-              </div>
-            </div>
-
-            <ul class="cl-vnavigation">
-              <li><a href="#"><i class="fa fa-home"></i><span>订单管理</span></a>
-                <ul class="sub-menu">
-                  <li class="active"><a href="{{url('admin/order/index')}}">订单列表</a></li>
-                  {{--<li><a href="dashboard2.html"><span class="label label-primary pull-right">New</span> Version 2</a></li>--}}
-                </ul>
-              </li>
-                <li><a href="#"><i class="fa fa-home"></i><span>商户管理</span></a>
-                    <ul class="sub-menu">
-                        <li class=""><a href="{{url('admin/merchant/index')}}" id="merchant">商户列表</a></li>
-                        <li class=""><a href="{{url('admin/merchant/add')}}" id="add_merchant">新增商户</a></li>
-                        {{--<li><a href="dashboard2.html"><span class="label label-primary pull-right">New</span> Version 2</a></li>--}}
-                    </ul>
-                </li>
-
-            </ul>
-          </div>
+<div class="main-layout" id='main-layout'>
+    <!--侧边栏-->
+    <div class="main-layout-side">
+        <div class="m-logo">
         </div>
+        <ul class="layui-nav layui-nav-tree" lay-filter="leftNav">
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;"><i class="iconfont">&#xe607;</i>商户管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;" data-url="{{url('admin/merchant/index')}}" data-id='1' data-text="商户列表" id="merchant"><span class="l-line"></span>商户列表</a></dd>
+                    <dd><a href="javascript:;" data-url="{{url('admin/merchant/add')}}" data-id='2' data-text="添加商户"><span class="l-line"></span>添加商户</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><i class="iconfont">&#xe608;</i>会员管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;" data-url="{{url('admin/user/index')}}" data-id='3' data-text="会员列表"><span class="l-line"></span>会员列表</a></dd>
+                    <dd><a href="javascript:;" data-url="{{url('admin/user/add')}}" data-id='4' data-text="新增会员"><span class="l-line"></span>新增会员</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><i class="iconfont">&#xe608;</i>服务产品</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;" data-url="{{url('admin/goods/index')}}" data-id='5' data-text="产品列表"><span class="l-line"></span>产品列表</a></dd>
+                    <dd><a href="javascript:;" data-url="{{url('admin/goods/add')}}" data-id='6' data-text="添加产品"><span class="l-line"></span>添加产品</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><i class="iconfont">&#xe608;</i>服务项目</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;" data-url="{{url('admin/template/index')}}" data-id='7' data-text="模板列表"><span class="l-line"></span>模板列表</a></dd>
+                    <dd><a href="javascript:;" data-url="{{url('admin/template/add')}}" data-id='8' data-text="添加模板"><span class="l-line"></span>添加模板</a></dd>
+                    <dd><a href="javascript:;" data-url="{{url('admin/template/field_index')}}" data-id='9' data-text="模板字段列表"><span class="l-line"></span>模板字段列表</a></dd>
+                    <dd><a href="javascript:;" data-url="{{url('admin/template/field_add')}}" data-id='10' data-text="添加模板字段"><span class="l-line"></span>添加模板字段</a></dd>
+                    <dd><a href="javascript:;" data-url="{{url('admin/server/index')}}" data-id='11' data-text="服务列表"><span class="l-line"></span>服务列表</a></dd>
+                    <dd><a href="javascript:;" data-url="{{url('admin/server/add')}}" data-id='12' data-text="添加服务"><span class="l-line"></span>添加服务</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><i class="iconfont">&#xe608;</i>订单管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;" data-url="{{url('admin/order/index')}}" data-id='13' data-text="订单列表"><span class="l-line"></span>订单列表</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><i class="iconfont">&#xe608;</i>系统管理</a>
+                <dl class="layui-nav-child">
+                    {{--<dd><a href="javascript:;" data-url="" data-id='3' data-text="会员列表"><span class="l-line"></span>用户管理</a></dd>--}}
+                    <dd><a href="javascript:;" data-url="{{url('admin/group/index')}}" data-id='20' data-text="组织列表"><span class="l-line"></span>组织列表</a></dd>
+                    <dd><a href="javascript:;" data-url="{{url('admin/role/index')}}" data-id='17' data-text="角色列表"><span class="l-line"></span>角色管理</a></dd>
+                    <dd><a href="javascript:;" data-url="{{url('admin/role/add')}}" data-id='16' data-text="添加角色"><span class="l-line"></span>添加角色</a></dd>
+                    <dd><a href="javascript:;" data-url="{{url('admin/permission/index')}}" data-id='14' data-text="权限列表"><span class="l-line"></span>权限管理</a></dd>
+                    <dd><a href="javascript:;" data-url="{{url('admin/permission/add')}}" data-id='15' data-text="添加权限"><span class="l-line"></span>添加权限</a></dd>
+                    {{--<dd><a href="javascript:;" data-url="" data-id='3' data-text="会员列表"><span class="l-line"></span>组织管理</a></dd>--}}
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><i class="iconfont">&#xe608;</i>热搜管理</a>
+                <dl class="layui-nav-child">
+                    {{--<dd><a href="javascript:;" data-url="" data-id='3' data-text="会员列表"><span class="l-line"></span>用户管理</a></dd>--}}
+                    <dd><a href="javascript:;" data-url="{{url('admin/hots/index')}}" data-id='18' data-text="热搜榜单"><span class="l-line"></span>热搜榜单</a></dd>
+                    {{--<dd><a href="javascript:;" data-url="{{url('admin/hots/index')}}" data-id='18' data-text="热词榜单"><span class="l-line"></span>热搜城市</a></dd>--}}
+                    {{--<dd><a href="javascript:;" data-url="{{url('admin/hots/add')}}" data-id='19' data-text="添加热词"><span class="l-line"></span>添加热词</a></dd>--}}
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><i class="iconfont">&#xe608;</i>广告管理</a>
+                <dl class="layui-nav-child">
+                    {{--<dd><a href="javascript:;" data-url="" data-id='3' data-text="会员列表"><span class="l-line"></span>用户管理</a></dd>--}}
+                    <dd><a href="javascript:;" data-url="{{url('admin/adsense/index')}}" data-id='19' data-text="广告位列表"><span class="l-line"></span>广告位列表</a></dd>
+                    {{--<dd><a href="javascript:;" data-url="{{url('admin/hots/add')}}" data-id='19' data-text="添加热词"><span class="l-line"></span>添加热词</a></dd>--}}
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><i class="iconfont">&#xe608;</i>消息通知</a>
+                <dl class="layui-nav-child">
+                    {{--<dd><a href="javascript:;" data-url="" data-id='3' data-text="会员列表"><span class="l-line"></span>用户管理</a></dd>--}}
+                    <dd><a href="javascript:;" data-url="{{url('admin/news/index')}}" data-id='21' data-text="消息通知列表"><span class="l-line"></span>消息通知列表</a></dd>
+                    <dd><a href="javascript:;" data-url="{{url('admin/news/add')}}" data-id='22' data-text="创建消息通知"><span class="l-line"></span>创建消息</a></dd>
+                    {{--<dd><a href="javascript:;" data-url="{{url('admin/hots/add')}}" data-id='19' data-text="添加热词"><span class="l-line"></span>添加热词</a></dd>--}}
+                </dl>
+            </li>
 
-			</div>
-		</div>
-	{{--内容部分--}}
-		<div class="container-fluid" id="pcont">
-		  <div class="cl-mcont">
-
-              <form action="{{url('admin/merchant/add')}}" style="margin-bottom: 0px ;display: none" class="form-horizontal" parsley-validate novalidate id="merchant_form">
-                      <div class="form-group"><label for="inputEmail3" class="col-sm-2 control-label">商户名称</label>
-                          <div class="col-sm-10"><input type="text" class="col-sm-6" name="merchant_name" placeholder="merchant_name">
-                          </div>
-                      </div>
-                      <div class="form-group"><label for="inputPassword3" class="col-sm-2 control-label">行业类型</label>
-                          <div class="col-sm-10">个人:<input type="radio" name="type" value=0> 企业:<input type="radio" name="type" value=1></div>
-                      </div>
-                      <div class="form-group"><label for="inputPassword3" class="col-sm-2 control-label">所属区域</label>
-                          <div class="col-sm-10"><input type="text" class="col-sm-6" name="regio"
-                                                        placeholder="regio"></div>
-                      </div>
-                      <div class="form-group"><label for="inputPassword3" class="col-sm-2 control-label">联系人</label>
-                          <div class="col-sm-10"><input type="text" class="col-sm-6" name="contacts" placeholder="contacts">
-                          </div>
-                      </div>
-                      <div class="form-group"><label for="inputPassword3" class="col-sm-2 control-label">联系电话</label>
-                          <div class="col-sm-10"><input type="number" class="col-sm-6" name="contacts_number"
-                                                        placeholder="contacts_number"></div>
-                      </div>
-                      <div class="form-group">
-                          <div class="col-sm-offset-2 col-sm-10">
-                              <button class="btn btn-primary" data-dismiss="modal" type="submit" id="add">新增</button>
-                          </div>
-                      </div>
-              </form>
-		  </div>
-		</div>
-		
-	</div>
-
-  <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-  <script src="/static/webuploader/webuploader.js"></script>
-    <script type="text/javascript" src="/static/js/jquery.gritter/js/jquery.gritter.js"></script>
-
-  <script type="text/javascript" src="/static/js/jquery.nanoscroller/jquery.nanoscroller.js"></script>
-	<script type="text/javascript" src="/static/js/behaviour/general.js"></script>
-  <script src="/static/js/jquery.ui/jquery-ui.js" type="text/javascript"></script>
-	<script type="text/javascript" src="/static/js/jquery.sparkline/jquery.sparkline.min.js"></script>
-	<script type="text/javascript" src="/static/js/jquery.easypiechart/jquery.easy-pie-chart.js"></script>
-	<script type="text/javascript" src="/static/js/jquery.nestable/jquery.nestable.js"></script>
-	<script type="text/javascript" src="/static/js/bootstrap.switch/bootstrap-switch.min.js"></script>
-	<script type="text/javascript" src="/static/js/bootstrap.datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-  <script src="/static/js/jquery.select2/select2.min.js" type="text/javascript"></script>
-  <script src="/static/js/skycons/skycons.js" type="text/javascript"></script>
-  <script src="/static/js/bootstrap.slider/js/bootstrap-slider.js" type="text/javascript"></script>
-  <script src="/static/js/intro.js/intro.js" type="text/javascript"></script>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><i class="iconfont">&#xe608;</i>分润机制</a>
+                <dl class="layui-nav-child">
+                    {{--<dd><a href="javascript:;" data-url="" data-id='3' data-text="会员列表"><span class="l-line"></span>用户管理</a></dd>--}}
+                    <dd><a href="javascript:;" data-url="{{url('admin/bonus/index')}}" data-id='23' data-text="分润机制列表"><span class="l-line"></span>分润机制列表</a></dd>
+                    <dd><a href="javascript:;" data-url="{{url('admin/bonus/add')}}" data-id='24' data-text="创建分润机制"><span class="l-line"></span>创建分润机制</a></dd>
+                    {{--<dd><a href="javascript:;" data-url="{{url('admin/hots/add')}}" data-id='19' data-text="添加热词"><span class="l-line"></span>添加热词</a></dd>--}}
+                </dl>
+            </li>
+        </ul>
+    </div>
+    <!--右侧内容-->
+    <div class="main-layout-container">
+        <!--头部-->
+        <div class="main-layout-header">
+            <div class="menu-btn" id="hideBtn">
+                <a href="javascript:;">
+                    <span class="iconfont">&#xe60e;</span>
+                </a>
+            </div>
+            <ul class="layui-nav" lay-filter="rightNav">
+                <li class="layui-nav-item"><a href="javascript:;" data-url="email.html" data-id='4' data-text="邮件系统"><i class="iconfont">&#xe603;</i></a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;" id="info_me">{{request()->session()->get('user_info')->merchant_name}}</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;" id="password">修改密码</a>
+                </li>
+                <li class="layui-nav-item"><a href="{{url('admin/login/logout')}}">退出</a></li>
+            </ul>
+        </div>
+        <!--主体内容-->
+        <div class="main-layout-body">
+            <!--tab 切换-->
+            <div class="layui-tab layui-tab-brief main-layout-tab" lay-filter="tab" lay-allowClose="true">
+                <ul class="layui-tab-title">
+                    <li class="layui-this welcome">后台主页</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show" style="background: #f5f5f5;" id="merchant">
 
 
+                         <!--1-->
+                        <iframe src="" width="100%" height="100%" name="iframe" scrolling="auto" class="iframe" framborder="0">
 
-  <script type="text/javascript">
+                        </iframe>
+                        <!--1end-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--遮罩-->
+    <div class="main-mask">
 
-      var uploader = WebUploader.create({
+    </div>
+</div>
 
-          // 选完文件后，是否自动上传。
-          auto: true,
+<script src="/static/admin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/admin/js/common.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/admin/js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
 
-          // swf文件路径
-          swf: '/static/Uploader.swf',
+        var scope={
+            link:'./welcome.html'
+        }
 
-          // 文件接收服务端。
-          server: 'http://webuploader.duapp.com/server/fileupload.php',
+        {{--$(document).on('click','#info_me',function () {--}}
+            {{--layer.open({--}}
 
-          // 选择文件的按钮。可选。
-          // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-          pick: '#filePicker',
+                {{--type:2,--}}
 
-          // 只允许选择图片文件。
-          accept: {
-              title: 'Images',
-              extensions: 'gif,jpg,jpeg,bmp,png',
-              mimeTypes: 'image/*'
-          }
-      });
+                {{--title:"修改个人信息",--}}
 
+                {{--area: ['800px', '600px'],--}}
 
-      $(document).ready(function(){
-          //initialize the javascript
-          App.init();
-          App.dashBoard();
-//          introJs().setOption('showBullets', false).start();
-      });
+                {{--closeBtn: 0,--}}
 
+                {{--shadeClose: true,--}}
 
-//生成商户列表页面
-      $(document).on('click','#merchant',function () {
+                {{--content: "{{url('admin/index/information')}}"--}}
 
-          $.get('{{url('admin/merchant/index')}}','',function (res) {
-            html='';
+            {{--});--}}
+        {{--});--}}
 
-            $.each(res,function (i,v) {
+        $(document).on('click','#password',function () {
+             index =layer.open({
 
-                html = '<tr class="odd gradeX"><td>'+v.merchant_name+'</td><td class="center">'+v.regio+'</td><td class="center">'+v.contacts+'</td><td class="center">'+v.contacts_number+'</td><td class="center">'+v.charges+'</td><td class="center">'+v.update_time+'</td><td class="center">'+v.counts+'</td><td class="center"><a href="{{url('admin/order/intro?id='."v.id")}}">查看员工</a> <a href="{{url('admin/order/intro?id='."v.id")}}">编辑</a> <a href="{{url('admin/order/intro?id='."v.id")}}">删除</a></td></tr>'
-            })
+                type:1,
 
-              $('#pcont').html('<table class="table table-bordered" id="datatable" ><thead><tr><th>商户名称</th><th>所属地区</th><th>联系人</th><th>联系电话</th><th>管理员</th><th>操作时间</th><th>员工人数</th><th>操作</th></tr></thead><tbody>'+html+'</tbody></table>')
-          },'json')
-      })
+                title:"修改密码",
 
+                area: ['500px','300px'],
 
-  </script>
+                closeBtn: 0,
 
-  <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+                shadeClose: true,
 
-    <script src="/static/js/behaviour/voice-commands.js"></script>
-  <script src="/static/js/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/static/js/jquery.flot/jquery.flot.js"></script>
-	<script type="text/javascript" src="/static/js/jquery.flot/jquery.flot.pie.js"></script>
-	<script type="text/javascript" src="/static/js/jquery.flot/jquery.flot.resize.js"></script>
-	<script type="text/javascript" src="/static/js/jquery.flot/jquery.flot.labels.js"></script>
-  </body>
+                content: '<form action="{{url('admin/index/password')}}" class="layui-form" method = "post" >{{csrf_field()}}<div class="layui-form-item"><label class="layui-form-label">用户名</label><div class="layui-input-block"><input type="text" name="username" required  lay-verify="required" value="{{request()->session()->get('user_info')->merchant_name}}" autocomplete="off" class="layui-input" readonly style="width: 300px"></div></div><div class="layui-form-item"><label class="layui-form-label">旧密码</label><div class="layui-input-block"><input type="password" name="old_password" required  lay-verify="required" autocomplete="off" class="layui-input" style="width: 300px"></div></div><div class="layui-form-item"><label class="layui-form-label">新密码</label><div class="layui-input-block"><input type="password" name="password" required  lay-verify="required" autocomplete="off" class="layui-input" style="width: 300px"></div></div><div class="layui-form-item"> <div class="layui-input-block"> <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button> <button type="button" class="layui-btn layui-btn-primary" >重置</button> </div> </div></form>'
 
-<!-- Mirrored from condorthemes.com/cleanzone/ by HTTrack Website Copier/3.x [XR&CO'2013], Mon, 31 Mar 2014 14:32:27 GMT -->
+            });
+        });
+</script>
+</body>
 </html>

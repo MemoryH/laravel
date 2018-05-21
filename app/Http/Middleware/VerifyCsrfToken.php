@@ -25,5 +25,10 @@ class VerifyCsrfToken extends Middleware
         'admin/api/site/update_img',
         'admin/login/logo',
         'admin/login/register',
+        'admin/merchant/upload',
+        'admin/merchant/user',
+        'admin/template/bind_field',
+        'admin/adsense/upload',
+        'admin/goods/upload',
     ];
 }

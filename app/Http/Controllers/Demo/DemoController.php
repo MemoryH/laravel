@@ -5,25 +5,26 @@ namespace App\Http\Controllers\Demo;
 use App\Http\Controllers\BaseController;
 use App\Http\Model\Demo\DemoModel;
 use App\Http\Services\Image;
-use Illuminate\Support\Facades\DB;
+use App\Http\Model\Model\ModelModel;
+use App\Http\Model\Server\ServerModel;
+
 
 //DEMO 演示
-class DemoController extends BaseController
-{
+class DemoController extends BaseController {
 	
 	//opensll配置文件名
 	private $openssl_path = 'openssl.cnf';
 	
 	protected $skip_maintain = [
-		'api_login', 'api_logout'
+		'api_login', 'api_logout','index'
 	];
 	
 	protected $skip_auth = [
-		'index', 'api_code', 'api_login', 'api_register', 'api_logout','test'
+		'index', 'api_code', 'api_login', 'api_register', 'api_logout'
 	];
 	
 	protected $skip_login = [
-		'index', 'api_code', 'api_login', 'api_register','test'
+		'index', 'api_code', 'api_login', 'api_register'
 	];
 	
 	/* 验证格式消息及规则 */
@@ -59,7 +60,7 @@ class DemoController extends BaseController
 				'username' => 'required|max:16|min:1',
 				'password' => 'required|max:16|min:3',
 				'code'     => 'min:4|max:4'
-			],
+			]
 		]
 	];
 	
@@ -75,24 +76,169 @@ class DemoController extends BaseController
 	}
 	
 	//展示页面
-    protected function index () {
+    	protected function index () {
+		
+		$model_model = new ModelModel();
+		
+//
+//		print_r($model_model->appendTemplate([
+//			'template_name'   => 'test',
+//			'template_js'        => '<script>alert("{{abc}}");</script>',
+//			'template_html'    => '<span><input type="text" value="{{abc}}" /></span>',
+//			'template_status' => 1
+//		]));
+		print_r($model_model->acquireTemplateList(1, 100));
 
+
+//		print_r($model_model->modifyTemplate([
+//			'template_name'   => 'test2',
+//			'template_js'        => '<script>alert(543543);</script>',
+//			'template_html'    => '<span><input type="text" /></span>',
+//			'template_status' => 2
+//		], [
+//			'id' => 1
+//		]));
+		
+		print_r($model_model->deleteTemplate(2));
+		
+
+//		$model_model->appendField([
+//			'module_name'                => 'test',
+//			'module_category'          => 3,
+//			'module_field'                 => 'abc',
+//			'module_field_alias'        => 'abc_alias',
+//			'module_field_status'     => 1,
+//			'module_isdel'            => 1
+//		]);
+
+
+		/*
+		$model_model->modifyField([
+				'module_field_len' => 10,
+			], [
+				'id' => 2
+			]
+		);
+		*/
+
+//		print_r($model_model->acquireFieldListCount());
+		print_r($model_model->acquireField(['id' => 2]));
+//		print_r($model_model->acquireFieldList(1, 10));
+//		$model_model->deleteField(2, true);
+//
+		$model_server = new ServerModel();
+		//print_r($model_server->acquireServer(['id'=> 1]));
+		//print_r($model_server->acquireServerList(1, 15));
+		//$server_id = $model_server->appendServer([
+		//	'user_id'         => 1,
+		//	'server_name' => '测试服务',
+		//	'server_pid'    => 0,
+		//	'server_desc'  => 'adsa'
+		//]);
+		
+		//$model_server->modifyServerSystem(6, [
+		//	'table_name' => 'tttt'
+		//]);
+		
+		//$model_server->modifyServer([
+		//	'server_name' => '测试服务2',
+		//	'server_desc'  => '22222'
+		//], [
+		//	'id' => 3
+		//]);
+		
+		//$model_model->bindTemplateField(3, [4]);
+		
+		//print_r($model_server->bindServerTemplate(6, 3, 1, [
+		//	'name' => '基础信息',
+		//	'order' => 1
+		//]));
+		//print_r($model_server->createServerTable(6));
+		//print_r($model_server->updateServerTable(6));
+		
+		/*$newfield = 'abc';
+		$field_infos = $model_server->modifyTableField(3, $newfield);
+		$field_ids = [];
+		
+		foreach ($field_infos as $field_id => $info) {
+			if ($info === true) {
+				$field_ids[] = $field_id;
+			}
+		}
+		
+		if (!empty($field_ids)) {
+			$model_model->modifyFields([
+					'module_field' => $newfield,
+				], 'id', $field_ids
+			);
+		}
+		
+		print_r($field_ids);
+		*/
+		
+		/*
+		$field_id = 3;
+		$field_infos = $model_server->deleteTableField($field_id);
+		
+		if (empty($field_infos[$field_id])) {
+			echo 'ok';
+			$model_model->deleteField($field_id);
+		}
+		*/
+		
+		//print_r($model_server->acquireServerDataListCount(6, ['where'=>[
+			//'abc2', 'test'
+		//]]));
+		
+		/*print_r($model_server->acquireServerDataList(6, 1, 15, [
+			'where'   =>['abc2', 'test'],
+			'orderBy'=>[
+				['create_date', 'desc'],
+				['id', 'desc'],
+				'multi' => true
+			]
+		], ['id','create_date']));*/
+		
+		/*print_r($model_server->acquireServerDataCount(6, [
+			'where'   =>['abc2', '123']
+		]));*/
+		
+		
+		print_r($model_server->appendServerData(6, [
+			'abc2' => 'test'
+		]));
+		//print_r($model_server->acquireServerData(6, [
+		//	'where' => ['abc2', 'test']
+		//]));
+		/*
+		print_r($model_server->modifyServerData(6, [
+			'abc2' => '111'
+		],[
+			'where' => [
+				['abc2', '11'],
+				['tindex', 1],
+				'multi' => true
+			]
+		]));
+		*/
+		
+//		print_r($model_server->deleteServerData(6, [
+//			'where' => [
+//				['abc2', '1aaa'],
+//				'multi' => true
+//			]
+//		]));
+		
+		exit;
+		//$model_server->acquireServerDataList();
+		//print_r($model_server->deleteServer(3));
+		exit;
 		if ($this->is_login) {
 			return redirect($this->domain.'/index/index');
 		} else {
 			return view($this->domain.'/'.$this->controller.'/'.$this->method)->with('rsa', preg_replace("/[\r\n]+/i", '', $this->rsa()));
 		}
 	}
-
-	//测试方法
-    protected function test(){
-//     $res = DB::select('select * from USER ');
-//        var_dump($res);
-     $tool = DB::insert('insert into USER (`name`,`age`)VALUE (?,?)',['222','11']);
-     var_dump($tool);
-
-//
-    }
 	
 	/* 验证码函数 */
 	protected function api_code () {

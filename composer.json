@@ -6,12 +6,16 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "baum/baum": "~1.1",
         "fideloper/proxy": "~3.3",
         "gregwar/captcha": "1.*",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "qiniu/php-sdk": "^7.2"
+        "qiniu/php-sdk": "^7.2",
+        "zizaco/entrust": "5.2.x-dev",
+        "jpush/jpush": "^3.5"
     },
+
     "require-dev": {
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
@@ -34,8 +38,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-            ]
+            "dont-discover": ["*"]
         }
     },
     "scripts": {

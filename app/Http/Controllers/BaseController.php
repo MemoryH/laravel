@@ -403,7 +403,7 @@ class BaseController extends Controller
 		
 		if ($this->IsLogin()) {
 			
-			if ($this->skip_auth === true || (is_array($this->skip_auth) && in_array($this->method, $this->skip_auth))) {
+			if ($this->skip_auth === true || (is_array($this->skip_auth) && in_array($this->domain.'/'.$this->controller.'/'.$this->method, $this->skip_auth))) {
 				return true;
 			}
 			
